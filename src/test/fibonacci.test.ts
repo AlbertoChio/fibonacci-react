@@ -1,11 +1,19 @@
 import { describe, expect, it } from "vitest";
 
-const fibonacci: Function = (n: number) => {
-    if (n <= 1) {
-      return n;
-    }
-    return fibonacci(n - 1) + fibonacci(n - 2);
-  };
+const fib = function(n:number) {
+
+  if (n <= 1) return n;
+  let prev2 = 0;
+  let prev1 = 1;
+  let c = 0;
+  for (let i = 2; i<= n; i++) {
+      c = prev1 + prev2;
+      prev2 = prev1;
+      prev1 = c;
+  }
+  
+  return c;
+};
   
   const validar: Function = (valor: number) => {
     if (isNaN(valor)) {
@@ -29,7 +37,7 @@ const fibonacci: Function = (n: number) => {
     let resultado = ''
       try {
         validar(valor);
-        resultado = String(fibonacci(valor));
+        resultado = String(fib(valor));
       } catch (error: any) {
         resultado = error.message;
       }

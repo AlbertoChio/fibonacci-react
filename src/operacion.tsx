@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
 
-const fibonacci: Function = (n: number) => {
-  if (n <= 1) {
-    return n;
+const fib = function(n:number) {
+
+  if (n <= 1) return n;
+  let prev2 = 0;
+  let prev1 = 1;
+  let c = 0;
+  for (let i = 2; i<= n; i++) {
+      c = prev1 + prev2;
+      prev2 = prev1;
+      prev1 = c;
   }
-  return fibonacci(n - 1) + fibonacci(n - 2);
+  
+  return c;
 };
 
 const validar: Function = (valor: number) => {
@@ -30,11 +38,11 @@ function operacion(valor: number): string {
   useEffect(() => {
     try {
       validar(valor);
-      setResultado(String(fibonacci(valor)));
+      setResultado(String(fib(valor)));
     } catch (error: any) {
       setResultado(error.message);
     }
-  });
+  },[valor]);
 
   return resultado;
 }
