@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function operacion(props: { valor: string }) {
+function operacion(props: { valor: string }):string {
   const [resultado, setResultado] = useState("");
   const numero = Number(props.valor);
 
